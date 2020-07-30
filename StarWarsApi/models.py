@@ -14,6 +14,7 @@ class Character(models.Model):
 class Film(models.Model):
 
     opening_crawl = models.CharField(max_length=1000)
+    name = models.CharField(max_length=500, default='')
     director = models.CharField(max_length=100)
     character = models.ForeignKey(Character, related_name='films' , on_delete=models.CASCADE)
 

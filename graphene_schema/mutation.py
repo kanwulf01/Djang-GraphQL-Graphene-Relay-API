@@ -27,15 +27,17 @@ class CreateCharacterMutation(graphene.Mutation):
 class CreateFilmMutation(graphene.Mutation):
     class Input(object):
         opening_crawl = graphene.String()
+        name = graphene.String()
         director = graphene.String()
         character_id = graphene.Int()
     name = graphene.Field(FilmNode)
     @staticmethod
     def mutate(root,info,**kwargs):
         opening_crawl = kwargs.get('opening_crawl').strip()
+        name = kwargs.get('name').strip()
         director = kwargs.get('director').strip()
         character_id = kwargs.get('character_id',0)
-        obj = Film.objects.create(opening_crawl=opening_crawl,director=director,character_id=character_id)
+        obj = Film.objects.create(opening_crawl=opening_crawl,name=name,director=director,character_id=character_id)
         return CreateFilmMutation(name=obj)
 
 class CreatePlanetMutation(graphene.Mutation):

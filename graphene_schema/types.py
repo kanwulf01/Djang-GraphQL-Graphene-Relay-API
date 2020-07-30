@@ -19,7 +19,7 @@ class FilmNode(DjangoObjectType):
     class Meta:
         model = Film
         filter_fields = {
-            
+            'name':['exact'],
             'opening_crawl':['exact'],
             'character__name':['exact', 'icontains'],
             'planets':['exact'],
@@ -34,6 +34,7 @@ class PlanetNode(DjangoObjectType):
     class Meta:
         model = Planet
         filter_fields = {
+            
             'name':['exact', 'icontains', 'istartswith'],
         }
         interfaces = (relay.Node,)
@@ -54,18 +55,11 @@ class UserType(DjangoObjectType):
 
 class Query(graphene.ObjectType):
 
-        
-    users = graphene.List(UserType)
-
-    character = relay.Node.Field(CharacterNode)
-
+    
     all_characters = DjangoFilterConnectionField(CharacterNode)
-
-    film = relay.Node.Field(FilmNode)
+    
     all_films = DjangoFilterConnectionField(FilmNode)
 
-    planets = relay.Node.Field(PlanetNode)
     all_planets = DjangoFilterConnectionField(PlanetNode)
 
-    producers = relay.Node.Field(ProducerNode)
     all_producers = DjangoFilterConnectionField(ProducerNode)
