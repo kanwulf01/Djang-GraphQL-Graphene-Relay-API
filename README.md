@@ -2,6 +2,7 @@
 Ejecutar los requeriments.txt para arrancar la API
 Para probar la api se debe ser superusuario o crear una cuenta desde /admin, en las urls del project esta la documentacion basica de la API
 Datos de Prueba
+
 mutation{
   createCharacter(name:"Skywalker",height:"160",mass:"160",gender:"Male",homeworld:"Tierra"){
     name{
